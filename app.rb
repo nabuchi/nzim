@@ -15,6 +15,14 @@ configure do
     SECRET = "d7TgIkD9yO3E3nNlKkm9HPIERkpD3aZqf5eAhwf6Ys"
 end
 
+configure :production do
+  BASE_URL="http://renadev.com:11080"
+end
+configure :development do
+  BASE_URL = "http://localhost:4567"
+end
+
+
 before do
     @twitter = TwitterOAuth::Client.new(
         :consumer_key => KEY,
@@ -25,9 +33,7 @@ before do
 end
 
 def base_url
-    default_port = (request.scheme == "http") ? 80 : 443
-    port = (request.port == default_port) ? "" : ":#{request.port.to_s}"
-    return  "#{request.scheme}://#{request.host}#{port}"
+    return BASE_URL
 end
 
 get '/' do
