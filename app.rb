@@ -55,14 +55,10 @@ get '/login' do
     session[:request_token] = request_token.token
     session[:request_token_secret] = request_token.secret
     redirect request_token.authorize_url.gsub('authorize', 'authenticate')
-    p :qqq
 end
 
 get '/oauth' do
     begin
-        p session[:request_token],
-          session[:request_token_secret],
-          params[:oauth_verifier]
         @access_token = @twitter.authorize(
             session[:request_token],
             session[:request_token_secret],
@@ -75,7 +71,7 @@ get '/oauth' do
         session[:access_token] = @access_token.token
         session[:secret_token] = @access_token.secret
         session[:login] = true
-        redirect '/'
+        redirect "#{base_url}/"
     else
         slim :error
     end
