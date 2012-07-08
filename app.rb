@@ -29,6 +29,11 @@ helpers do
   end
 end
 
+# load models
+( Dir::glob("models/*.rb") ).each do |model|
+  require model
+end
+
 before do
   @twitter = TwitterOAuth::Client.new(
                                       :consumer_key => KEY,
