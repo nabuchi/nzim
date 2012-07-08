@@ -31,17 +31,17 @@ def base_url
 end
 
 get '/' do
-    if session[:login]
-        @screen_name = @twitter.info['screen_name']
-        @image_url = @twitter.info['profile_image_url_https']
-        slim :login
-    else
-        slim :notlogin
-    end
+  if session[:login]
+    @screen_name = @twitter.info['screen_name']
+    @image_url = @twitter.info['profile_image_url_https']
+    slim :index
+  else
+    slim :login
+  end
 end
 
 get '/login' do
-    callback_url = "#{base_url}/access_token"
+    callback_url = "#{base_url}/oauth"
     request_token = @twitter.request_token(
         :oauth_callback => callback_url
     )
