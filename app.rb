@@ -11,8 +11,8 @@ set :session, true
 
 configure do
     use Rack::Session::Cookie, :secret => Digest::SHA1.hexdigest(rand.to_s)
-    KEY = "BWLc6ZSTRH79obxmjuwVIQ"
-    SECRET = "J7sI8DpnDUDYZuSMNGySYndKZo6IrISEmAq3NgGYNbg"
+    KEY = "AOOliBzn6jcBHl6QKv5vPg"
+    SECRET = "d7TgIkD9yO3E3nNlKkm9HPIERkpD3aZqf5eAhwf6Ys"
 end
 
 before do
@@ -51,7 +51,7 @@ get '/login' do
     redirect request_token.authorize_url.gsub('authorize', 'authenticate')
 end
 
-get '/access_token' do
+get '/oauth' do
     begin
         p session[:request_token],
           session[:request_token_secret],
