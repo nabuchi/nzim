@@ -1,8 +1,11 @@
 source :rubygems
 
 gem 'sinatra'
+gem 'warden'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'warden_omniauth'
 gem 'slim'
-gem 'twitter_oauth'
 gem 'i18n'
 gem 'mongoid'
 gem 'bson_ext'
